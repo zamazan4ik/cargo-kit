@@ -103,12 +103,12 @@ pub enum TemplateItemId {
 
 /// Describes options for applying templates
 #[derive(Debug, Default)]
-pub struct WizardOptions {
+pub struct KitOptions {
     /// Include template items that require a nightly compiler.
     nightly_items: bool,
 }
 
-impl WizardOptions {
+impl KitOptions {
     pub fn nightly_items_enabled(&self) -> bool {
         self.nightly_items
     }

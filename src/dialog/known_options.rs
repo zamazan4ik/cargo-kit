@@ -27,6 +27,7 @@ impl TomlValueKind {
     }
 }
 
+#[allow(dead_code)]
 pub enum SelectedPossibleValue {
     Constant { index: usize, value: TomlValue },
     Custom { value: TomlValue },

@@ -6,7 +6,7 @@ use clap::Parser;
 use rustc_version::Channel;
 
 use cargo_kit::{
-    parse_workspace, resolve_manifest_path, PredefinedTemplateKind, Profile, WizardOptions,
+    parse_workspace, resolve_manifest_path, KitOptions, PredefinedTemplateKind, Profile,
 };
 
 use crate::cli::CliConfig;
@@ -23,7 +23,7 @@ mod dialog;
 #[clap(disable_help_subcommand(true))]
 enum Args {
     #[clap(author, version, about)]
-    Wizard(InnerArgs),
+    Kit(InnerArgs),
 }
 
 #[derive(clap::ValueEnum, Clone, Debug)]
@@ -109,8 +109,8 @@ enum SubCommand {
     },
 }
 
-fn options_from_args(args: &InnerArgs) -> WizardOptions {
-    let mut options = WizardOptions::default();
+fn options_from_args(args: &InnerArgs) -> KitOptions {
+    let mut options = KitOptions::default();
     let is_nightly = match args.nightly {
         NightlyOptions::Auto => {
             match rustc_version::version_meta() {
@@ -135,7 +135,7 @@ fn options_from_args(args: &InnerArgs) -> WizardOptions {
 fn main() -> anyhow::Result<()> {
     let args = Args::parse();
     match args {
-        Args::Wizard(root_args) => {
+        Args::Kit(root_args) => {
             let options = options_from_args(&root_args);
             let cargo_options =
                 KnownCargoOptions::create().context("Cannot get known Cargo options")?;

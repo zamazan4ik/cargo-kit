@@ -1,7 +1,7 @@
 use crate::template::{dev_profile, release_profile, TemplateItemId};
 use crate::toml::TomlValue;
 use crate::utils::get_core_count;
-use crate::{Template, WizardOptions};
+use crate::{Template, KitOptions};
 
 /// Enumeration of predefined templates.
 #[derive(clap::ValueEnum, Clone, Copy, Debug)]
@@ -15,7 +15,7 @@ pub enum PredefinedTemplateKind {
 }
 
 impl PredefinedTemplateKind {
-    pub fn build_template(&self, options: &WizardOptions) -> Template {
+    pub fn build_template(&self, options: &KitOptions) -> Template {
         match self {
             PredefinedTemplateKind::FastCompile => fast_compile_template(options),
             PredefinedTemplateKind::FastRuntime => fast_runtime_template(),
@@ -25,7 +25,7 @@ impl PredefinedTemplateKind {
 }
 
 /// Template that focuses on quick compile time.
-pub fn fast_compile_template(options: &WizardOptions) -> Template {
+pub fn fast_compile_template(options: &KitOptions) -> Template {
     let mut builder = dev_profile().item(TemplateItemId::DebugInfo, TomlValue::int(0));
 
     #[cfg(unix)]
@@ -75,11 +75,11 @@ pub fn min_size_template() -> Template {
 /// Test that the predefined templates can be created without panicking.
 #[cfg(test)]
 mod tests {
-    use crate::{fast_compile_template, fast_runtime_template, min_size_template, WizardOptions};
+    use crate::{fast_compile_template, fast_runtime_template, min_size_template, KitOptions};
 
     #[test]
     fn create_fast_compile_template() {
-        fast_compile_template(&WizardOptions::default());
+        fast_compile_template(&KitOptions::default());
     }
 
     #[test]

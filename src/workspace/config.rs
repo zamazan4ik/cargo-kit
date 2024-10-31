@@ -6,6 +6,7 @@ use anyhow::Context;
 use toml_edit::{table, value, Array, Document, Formatted, Value};
 
 /// Config stored in `.cargo/config.toml` file.
+#[warn(deprecated)]
 #[derive(Debug, Clone)]
 pub struct CargoConfig {
     path: PathBuf,

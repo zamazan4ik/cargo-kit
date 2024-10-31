@@ -2,7 +2,7 @@ use anyhow::Context;
 
 use cargo_kit::{
     parse_workspace, resolve_manifest_path, BuiltinProfile, PredefinedTemplateKind, Profile,
-    Template, WizardOptions,
+    Template, KitOptions,
 };
 pub use error::{DialogError, PromptResult};
 pub use utils::profile_from_str;
@@ -22,7 +22,7 @@ mod utils;
 pub fn run_root_dialog(
     cli_config: CliConfig,
     cargo_options: KnownCargoOptions,
-    options: WizardOptions,
+    options: KitOptions,
 ) -> PromptResult<()> {
     let manifest_path = resolve_manifest_path().context("Cannot resolve Cargo.toml path")?;
     let workspace = parse_workspace(&manifest_path)?;

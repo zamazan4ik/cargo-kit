@@ -12,7 +12,7 @@
 //! You can also use this crate as a library, although it probably won't be very useful.
 
 pub use predefined::*;
-pub use template::{Template, TemplateItemId, WizardOptions};
+pub use template::{Template, TemplateItemId, KitOptions};
 pub use toml::TomlValue;
 pub use utils::get_core_count;
 pub use workspace::config::CargoConfig;

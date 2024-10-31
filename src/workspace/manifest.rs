@@ -62,6 +62,7 @@ impl Profile {
 }
 
 /// Manifest parsed out of a `Cargo.toml` file.
+#[warn(deprecated)]
 #[derive(Clone)]
 pub struct CargoManifest {
     path: PathBuf,

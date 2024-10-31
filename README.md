@@ -39,8 +39,7 @@ To install **cargo-kit**, simply clone the repository and follow the instruction
 git clone git@github.com:trinhminhtriet/cargo-kit.git
 cd cargo-kit
 
-cargo build --release
-cp ./target/release/cargo-kit /usr/local/bin/
+cargo install --path .
 ```
 
 Running the below command will globally install the `cargo-kit` binary.
